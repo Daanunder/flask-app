@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }} - 't Bagijn</title>
+</head>
+<body>
+    {% if user %}
+     <h1>Hello, {{ user.nickname }}!</h1>
+    {%  else %}
+    <h1>Hello there stranger!</h1>
+    {% endif %}
+</body>
+</html>
