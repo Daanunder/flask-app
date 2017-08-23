@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }} - 't Bagijn</title>
-</head>
-<body>
+<!--extend the base template /w block content -->
+{% extends "base.html" %}
+{% block content %}
+
+    <!--User welcome + header -->
     {% if user %}
      <h1>Hello, {{ user.nickname }}!</h1>
     {%  else %}
     <h1>Hello there stranger!</h1>
     {% endif %}
-</body>
-</html>
+
+    <!--Loop through user posts-->
+     {% for post in posts %}
+    <div><p>{{ post.author.nickname }} says: <b>{{ post.body }}</b></p></div>
+    {% endfor %}
+
+{% endblock %}

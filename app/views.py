@@ -16,6 +16,18 @@ from app import app
 
 def index():
     user = {'nickname': 'Miguel'}  # fake user
+    posts = [  # fake array of posts
+        {
+            'author': {'nickname': 'John'},
+            'body': 'Beautiful day in Portland!'
+        },
+        {
+            'author': {'nickname': 'Susan'},
+            'body': 'The Avengers movie was so cool!'
+        }
+    ]
+    #  Using the index.html template and giving arguments from the above defined list
     return render_template('index.html',
                            title='Home',
-                           user=user)
+                           user=user,
+                           posts=posts)
