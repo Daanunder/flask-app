@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1> Sign In </h1>
+    <form action="" method="post" name="login">
+        <!--Necessary for CSRF security - defined in config.py for forms-extension-->
+        {{ form.hidden_tag() }}
+
+        <!--Actual login form - form.field_name defined in forms.py-->
+        <p>
+            Please enter your OpenID:<br>
+            {{ form.openid(size=80) }}
+
+            <!--possibly return error message on false validation - stored under form.field_name.errors -->
+            {% for error in form.openid.errors %}
+                <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+            <br>
+        </p>
+        <p> {{ form.remember_me }} Remember me </p>
+
+        <!--Submit button contains no data so html-defined -->
+        <p><input type="submit" value="Sign In"></p>
+    </form>
+
+{% endblock %}
