@@ -1,1 +1,11 @@
-from flask_script import Manager
+from migrate.versioning import api
+from config import SQLALCHEMY_DATABASE_URI
+from config import FLASK_MIGRATE_REPO
+from app import db
+import os.path
+db.create_all()
+if not os.path.exists(FLASK_MIGRATE_REPO):
+    api.create(FLASK_MIGRATE_REPO, 'database repository')
+    api.version_control(SQLALCHEMY_DATABASE_URI, FLASK_MIGRATE_REPO)
+else:
+    api.version_control(SQLALCHEMY_DATABASE_URI, FLASK_MIGRATE_REPO, api.version(FLASK_MIGRATE_REPO))
